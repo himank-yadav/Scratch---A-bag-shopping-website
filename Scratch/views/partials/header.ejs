@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scatch</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Remix Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body style="font-family: 'Inter', sans-serif;">
+
+    <nav class="w-full fixed top-0 left-0 px-5 py-3 bg-white shadow-sm flex justify-between">
+        <h3 class="text-xl font-semibold">Scatch</h3>
+        <% var Loggedin = typeof Loggedin !== "undefined" ? Loggedin : true %>
+        <% if( Loggedin ){ %>
+            <div class="flex gap-5">
+            <a href="/shop">Shop</a>
+            <a href="/cart">Cart</a>
+            <a href="">My account</a>
+            <a class="text-red-600" href="/">Logout</a>
+        </div>
+        <%}%>
+    </nav>

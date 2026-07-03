@@ -1,0 +1,101 @@
+<%- include('./partials/header') %>
+<% if(success.length > 0){ %>
+
+<div id="flash"
+     class="fixed top-5 left-1/2 -translate-x-1/2 bg-green-500 text-white px-5 py-3 rounded-lg shadow-lg z-50">
+    <%= success %>
+</div>
+
+<script>
+    setTimeout(() => {
+        document.getElementById("flash").remove();
+    }, 2000);
+</script>
+
+<% } %>
+
+<div class="w-full min-h-screen flex px-20 py-20">
+
+    <!-- Sidebar -->
+    <div class="w-1/4 pr-10">
+
+        <!-- Sort -->
+        <div class="flex items-center gap-2">
+            <h3 class="font-semibold">Sort By</h3>
+
+            <form action="/shop">
+                <select class="border px-2 py-1 rounded" name="sortby">
+                    <option value="popular">Popular</option>
+                    <option value="newest">Newest</option>
+                </select>
+            </form>
+        </div>
+
+        <!-- Categories -->
+        <div class="flex flex-col mt-16">
+            <a class="mb-2 hover:underline" href="">New Collection</a>
+            <a class="mb-2 hover:underline" href="">All Products</a>
+            <a class="mb-2 hover:underline" href="">Discounted Products</a>
+        </div>
+
+        <!-- Filters -->
+        <div class="mt-20">
+            <h3 class="mb-3 font-semibold">Filter By</h3>
+            <a class="block mb-2 hover:underline" href="">Availability</a>
+            <a class="block mb-2 hover:underline" href="">Discount</a>
+        </div>
+
+    </div>
+
+    <!-- Products -->
+    <div class="w-3/4">
+
+        <!-- Grid (Maximum 4 products per row) -->
+        <div class="grid grid-cols-4 gap-8">
+
+            <% products.forEach(function(product){ %>
+
+                <div class="rounded-lg overflow-hidden">
+
+                    <!-- Product Image -->
+                    <div class="w-full h-60 flex items-center justify-center rounded-t-lg bg-[<%= product.bgcolor %>]">
+                        <img
+                            class="h-48 object-contain"
+                            src="data:image/jpeg;base64,<%= product.image.toString('base64') %>"
+                            alt="<%= product.name %>"
+                        >
+                    </div>
+
+                    <!-- Product Info -->
+                    <div class="flex justify-between items-center px-4 py-4 rounded-b-lg bg-[<%= product.panelcolor %>] text-[<%= product.textcolor %>]">
+
+                        <div>
+                            <h3 class="font-medium text-lg">
+                                <%= product.name %>
+                            </h3>
+
+                            <h4 class="font-semibold">
+                                ₹ <%= product.price %>
+                            </h4>
+                        </div>
+
+                        <a
+                            href="/addtocart/<%= product._id %>"
+                            class="w-8 h-8 flex items-center justify-center rounded-full bg-white text-black shadow hover:scale-110 transition "
+                        >
+                            <i class="ri-add-line"></i>
+                        </a>
+
+                    </div>
+
+                </div>
+
+            <% }) %>
+
+        </div>
+
+    </div>
+
+</div>
+
+<%- include('./partials/footer') %>
